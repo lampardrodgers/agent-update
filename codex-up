@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+set -eu
+
+PACKAGE="@openai/codex@latest"
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "codex-up: npm was not found in PATH. Install Node.js/npm first." >&2
+  exit 127
+fi
+
+echo "Updating Codex CLI with: npm i -g ${PACKAGE}"
+npm i -g "${PACKAGE}"
+
+echo
+echo "Codex CLI version:"
+if command -v codex >/dev/null 2>&1; then
+  codex --version
+else
+  echo "codex-up: update finished, but 'codex' is not in PATH." >&2
+  echo "Check your npm global bin path with: npm bin -g" >&2
+fi
