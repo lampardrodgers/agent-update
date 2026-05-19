@@ -2,7 +2,9 @@
   "name": "@sunjiehao/codex-up",
   "version": "0.1.0",
   "description": "Update the OpenAI Codex CLI with one command.",
-  "bin": "codex-up",
+  "bin": {
+    "codex-up": "codex-up"
+  },
   "files": [
     "codex-up",
     "install.sh",
