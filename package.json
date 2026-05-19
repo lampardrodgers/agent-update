@@ -1,5 +1,5 @@
 {
-  "name": "@lampardrodgers/codex-up",
+  "name": "@sunjiehao/codex-up",
   "version": "0.1.0",
   "description": "Update the OpenAI Codex CLI with one command.",
   "bin": {

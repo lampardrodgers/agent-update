@@ -11,7 +11,7 @@ npm i -g @openai/codex@latest
 With npm:
 
 ```sh
-npm i -g @lampardrodgers/codex-up
+npm i -g @sunjiehao/codex-up
 ```
 
 Then run:
@@ -47,7 +47,7 @@ export PATH="$HOME/.local/bin:$PATH"
 Use npm on the other device:
 
 ```sh
-npm i -g @lampardrodgers/codex-up
+npm i -g @sunjiehao/codex-up
 codex-up
 ```
 
