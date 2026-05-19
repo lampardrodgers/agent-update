@@ -1,0 +1,30 @@
+{
+  "name": "@lampardrodgers/codex-up",
+  "version": "0.1.0",
+  "description": "Update the OpenAI Codex CLI with one command.",
+  "bin": {
+    "codex-up": "./codex-up"
+  },
+  "files": [
+    "codex-up",
+    "install.sh",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lampardrodgers/codex-update.git"
+  },
+  "keywords": [
+    "codex",
+    "openai",
+    "cli",
+    "update"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
