@@ -1,25 +1,40 @@
 #!/usr/bin/env sh
 set -eu
 
-SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-SOURCE="${SCRIPT_DIR}/codex-up"
+REPO_RAW_BASE="https://raw.githubusercontent.com/lampardrodgers/codex-update/main"
 TARGET_DIR="${HOME}/.local/bin"
-TARGET="${TARGET_DIR}/codex-up"
 
 mkdir -p "${TARGET_DIR}"
-cp "${SOURCE}" "${TARGET}"
-chmod 755 "${TARGET}"
+
+SCRIPT_DIR=""
+if [ -n "${0:-}" ] && [ -f "$0" ]; then
+  SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+fi
+
+install_bin() {
+  bin_name="$1"
+  target="${TARGET_DIR}/${bin_name}"
+
+  if [ -n "${SCRIPT_DIR}" ] && [ -f "${SCRIPT_DIR}/${bin_name}" ]; then
+    cp "${SCRIPT_DIR}/${bin_name}" "${target}"
+  else
+    curl -fsSL "${REPO_RAW_BASE}/${bin_name}" -o "${target}"
+  fi
+
+  chmod 755 "${target}"
+  echo "Installed ${bin_name} to ${target}"
+}
+
+install_bin "agent-up"
+install_bin "codex-up"
 
 case ":${PATH}:" in
-  *":${TARGET_DIR}:"*) ;;
+  *":${TARGET_DIR}:"*)
+    echo "Run it anywhere with: agent-up"
+    ;;
   *)
-    echo "Installed codex-up to ${TARGET}"
     echo
-    echo "Add this to your shell config if codex-up is not found:"
+    echo "Add this to your shell config (~/.zshrc or ~/.bashrc) if agent-up is not found:"
     echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
-    exit 0
     ;;
 esac
-
-echo "Installed codex-up to ${TARGET}"
-echo "Run it with: codex-up"

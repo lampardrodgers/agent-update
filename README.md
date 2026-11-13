@@ -1,71 +1,95 @@
-# codex-up
+# agent-up
 
-Small macOS/Linux helper command for updating Codex CLI:
+One command to update your AI coding CLI agents (`codex`, `claude`, `grok`, `agy`) **in parallel** on macOS and Linux.
+
+一条命令并发更新常用 AI 编程 CLI 工具（`codex`、`claude`、`grok`、`agy`），自动汇总各工具更新结果与最新版本号。
+
+## Features / 特性
+
+- **Parallel Updates / 四路并发更新**：同时运行 `codex update`、`claude update`、`grok update`、`agy update`，大幅缩短等待时间
+- **Clean Prefixed Output / 清晰日志前缀**：自动清理终端进度条回车符（`\r`），按工具名称着色区分输出
+- **Graceful Skip / 自动跳过未安装项**：某台机器未安装其中某个 CLI 时自动跳过，不影响其余工具更新
+- **Safe Signal Handling / 安全中断**：`Ctrl+C` 自动清理全部后台子进程与临时目录
+- **Version Summary / 版本汇总**：结束后自动输出每个 CLI 的最新版本号与状态
+
+## Quick Install / 快速安装
+
+### Option 1: One-line Install (Recommended / 推荐)
 
 ```sh
-npm i -g @openai/codex@latest
+curl -fsSL https://raw.githubusercontent.com/lampardrodgers/codex-update/main/install.sh | sh
 ```
 
-## Install
+### Option 2: Clone & Install / 克隆安装
 
-With npm:
+```sh
+git clone https://github.com/lampardrodgers/codex-update.git
+cd codex-update
+sh install.sh
+```
+
+### Option 3: Install via npm
 
 ```sh
 npm i -g @sunjiehao/codex-up
 ```
 
-Then run:
+> Make sure `~/.local/bin` is in your `PATH` (for `install.sh`):
+>
+> ```sh
+> export PATH="$HOME/.local/bin:$PATH"
+> ```
+
+## Usage / 使用方法
+
+Update all default agents (`codex`, `claude`, `grok`, `agy`) in parallel:
 
 ```sh
-codex-up
+agent-up
 ```
 
-The npm package name is scoped because the unscoped `codex-up` package name is already taken on npm.
+Example output:
 
-## Manual Install
+```text
+==> Updating 4 agent(s) in parallel: codex claude grok agy
+[codex ] starting 'codex update'...
+[claude] starting 'claude update'...
+[grok  ] starting 'grok update'...
+[agy   ] starting 'agy update'...
+...
+==> Summary
+  ✓ codex   updated  (codex-cli 0.167.2)
+  ✓ claude  updated  (2.1.323 (Claude Code))
+  ✓ grok    updated  (grok 1.0.77)
+  ✓ agy     updated  (1.5.7)
+```
 
-From a cloned copy of this folder:
+Update specific agents only / 仅并发更新指定工具：
 
 ```sh
-sh install.sh
+agent-up codex claude
 ```
 
-Then run:
+Check version or help / 查看版本与帮助：
 
 ```sh
-codex-up
+agent-up --version
+agent-up --help
 ```
 
-If your shell cannot find `codex-up`, add this to `~/.zshrc`, `~/.bashrc`, or the equivalent shell config:
+> Legacy `codex-up` command is still included for backward compatibility.
+
+## Deploy to Another Machine via SSH / 远程机器一键部署
 
 ```sh
-export PATH="$HOME/.local/bin:$PATH"
+ssh <your-host> 'curl -fsSL https://raw.githubusercontent.com/lampardrodgers/codex-update/main/install.sh | sh'
 ```
 
-## Move To Another Mac Or Linux Device
+## Release History / 版本记录
 
-Use npm on the other device:
+- **v1.0.0** — 新增 `agent-up`，支持并发执行 `codex update`、`claude update`、`grok update`、`agy update`，支持一键远程安装与版本汇总（保留 `codex-up` 兼容）
+- **v0.1.0** — 初始版本，提供 `codex-up` 单工具更新脚本
 
-```sh
-npm i -g @sunjiehao/codex-up
-codex-up
-```
+## License
 
-Or copy this folder to the other device, then run:
-
-```sh
-sh install.sh
-codex-up
-```
-
-Requirements:
-
-- Node.js and npm are installed.
-- Your npm global install location is writable, or your npm setup already handles global packages without `sudo`.
-
-## Publish
-
-```sh
-npm login
-npm publish --access public
-```
+MIT

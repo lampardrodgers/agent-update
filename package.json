@@ -1,11 +1,13 @@
 {
   "name": "@sunjiehao/codex-up",
-  "version": "0.1.0",
-  "description": "Update the OpenAI Codex CLI with one command.",
+  "version": "1.0.0",
+  "description": "Update AI coding CLI agents (codex, claude, grok, agy) in parallel with one command (agent-up).",
   "bin": {
+    "agent-up": "agent-up",
     "codex-up": "codex-up"
   },
   "files": [
+    "agent-up",
     "codex-up",
     "install.sh",
     "README.md"
@@ -15,8 +17,13 @@
     "url": "git+https://github.com/lampardrodgers/codex-update.git"
   },
   "keywords": [
+    "agent-up",
     "codex",
-    "openai",
+    "claude",
+    "grok",
+    "agy",
+    "antigravity",
+    "ai-agent",
     "cli",
     "update"
   ],
