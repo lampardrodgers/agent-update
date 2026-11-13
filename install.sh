@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 set -eu
 
-REPO_RAW_BASE="https://raw.githubusercontent.com/lampardrodgers/codex-update/main"
+REPO_RAW_BASE="https://raw.githubusercontent.com/lampardrodgers/agent-update/main"
 TARGET_DIR="${HOME}/.local/bin"
+TARGET="${TARGET_DIR}/agent-up"
 
 mkdir -p "${TARGET_DIR}"
 
@@ -11,22 +12,14 @@ if [ -n "${0:-}" ] && [ -f "$0" ]; then
   SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 fi
 
-install_bin() {
-  bin_name="$1"
-  target="${TARGET_DIR}/${bin_name}"
+if [ -n "${SCRIPT_DIR}" ] && [ -f "${SCRIPT_DIR}/agent-up" ]; then
+  cp "${SCRIPT_DIR}/agent-up" "${TARGET}"
+else
+  curl -fsSL "${REPO_RAW_BASE}/agent-up" -o "${TARGET}"
+fi
 
-  if [ -n "${SCRIPT_DIR}" ] && [ -f "${SCRIPT_DIR}/${bin_name}" ]; then
-    cp "${SCRIPT_DIR}/${bin_name}" "${target}"
-  else
-    curl -fsSL "${REPO_RAW_BASE}/${bin_name}" -o "${target}"
-  fi
-
-  chmod 755 "${target}"
-  echo "Installed ${bin_name} to ${target}"
-}
-
-install_bin "agent-up"
-install_bin "codex-up"
+chmod 755 "${TARGET}"
+echo "Installed agent-up to ${TARGET}"
 
 case ":${PATH}:" in
   *":${TARGET_DIR}:"*)

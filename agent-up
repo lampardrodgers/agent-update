@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 # Ensure common user CLI paths are available even in non-interactive/SSH shells
 export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/.grok/bin:$HOME/.gemini/antigravity-cli/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"

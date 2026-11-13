@@ -17,21 +17,21 @@ One command to update your AI coding CLI agents (`codex`, `claude`, `grok`, `agy
 ### Option 1: One-line Install (Recommended / 推荐)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/lampardrodgers/codex-update/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/lampardrodgers/agent-update/main/install.sh | sh
 ```
 
 ### Option 2: Clone & Install / 克隆安装
 
 ```sh
-git clone https://github.com/lampardrodgers/codex-update.git
-cd codex-update
+git clone https://github.com/lampardrodgers/agent-update.git
+cd agent-update
 sh install.sh
 ```
 
 ### Option 3: Install via npm
 
 ```sh
-npm i -g @sunjiehao/codex-up
+npm i -g @sunjiehao/agent-up
 ```
 
 > Make sure `~/.local/bin` is in your `PATH` (for `install.sh`):
@@ -77,18 +77,11 @@ agent-up --version
 agent-up --help
 ```
 
-> Legacy `codex-up` command is still included for backward compatibility.
-
 ## Deploy to Another Machine via SSH / 远程机器一键部署
 
 ```sh
-ssh <your-host> 'curl -fsSL https://raw.githubusercontent.com/lampardrodgers/codex-update/main/install.sh | sh'
+ssh <your-host> 'curl -fsSL https://raw.githubusercontent.com/lampardrodgers/agent-update/main/install.sh | sh'
 ```
-
-## Release History / 版本记录
-
-- **v1.0.0** — 新增 `agent-up`，支持并发执行 `codex update`、`claude update`、`grok update`、`agy update`，支持一键远程安装与版本汇总（保留 `codex-up` 兼容）
-- **v0.1.0** — 初始版本，提供 `codex-up` 单工具更新脚本
 
 ## License
 

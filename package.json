@@ -1,20 +1,18 @@
 {
-  "name": "@sunjiehao/codex-up",
-  "version": "1.0.0",
+  "name": "@sunjiehao/agent-up",
+  "version": "1.0.1",
   "description": "Update AI coding CLI agents (codex, claude, grok, agy) in parallel with one command (agent-up).",
   "bin": {
-    "agent-up": "agent-up",
-    "codex-up": "codex-up"
+    "agent-up": "agent-up"
   },
   "files": [
     "agent-up",
-    "codex-up",
     "install.sh",
     "README.md"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lampardrodgers/codex-update.git"
+    "url": "git+https://github.com/lampardrodgers/agent-update.git"
   },
   "keywords": [
     "agent-up",
